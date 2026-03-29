@@ -268,7 +268,6 @@
   <div class="version-bar">
     <span class="version-label">Versione</span>
     <select class="version-select" id="versionSelect" onchange="loadVersion(this.value)">
-      <option value="2026_03_28">2026.03.28</option>
     </select>
   </div>
 
@@ -278,7 +277,8 @@
 <script>
   // All known versions — add new ones here as you release them
   const VERSIONS = [
-    "2026_03_28"
+    "2026_03_29",
+    "2026_03_28",
   ];
 
   // Populate the select
@@ -374,7 +374,7 @@
   async function loadVersion(version) {
     document.getElementById('content').innerHTML = '<div class="loading">Caricamento arcani...</div>';
     try {
-      const res = await fetch(`${version}.json`);
+      const res = await fetch(`briscola-arcana-rulesets/${version}.json`);
       if (!res.ok) throw new Error('Not found');
       const data = await res.json();
       render(data);
