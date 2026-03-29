@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Briscola Arcana</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: #7a5f28;
+    --ink: #0e0b07;
+    --parchment: #f5eedc;
+    --parchment-dark: #e8dfc4;
+    --deep: #1a1208;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--ink);
+    color: var(--parchment);
+    font-family: 'EB Garamond', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.7;
+    min-height: 100vh;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 40px 80px;
+    position: relative;
+  }
+
+  .page::before, .page::after {
+    content: '';
+    position: fixed;
+    width: 120px; height: 120px;
+    border-color: var(--gold-dim);
+    border-style: solid;
+    opacity: 0.4;
+    pointer-events: none;
+  }
+  .page::before { top: 20px; left: 20px; border-width: 2px 0 0 2px; }
+  .page::after  { bottom: 20px; right: 20px; border-width: 0 2px 2px 0; }
+
+  /* Version switcher */
+  .version-bar {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-bottom: 40px;
+  }
+
+  .version-label {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+  }
+
+  .version-select {
+    background: rgba(201,168,76,0.08);
+    border: 1px solid var(--gold-dim);
+    color: var(--gold);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    padding: 5px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 24px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%237a5f28'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    transition: border-color 0.2s;
+  }
+  .version-select:hover { border-color: var(--gold); }
+  .version-select option { background: #1a1208; color: var(--gold); }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 56px;
+    position: relative;
+    padding-bottom: 40px;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 50%;
+    transform: translateX(-50%);
+    width: 280px; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .star-divider {
+    color: var(--gold);
+    font-size: 18px;
+    letter-spacing: 16px;
+    margin-bottom: 16px;
+    display: block;
+    opacity: 0.7;
+  }
+  h1 {
+    font-family: 'Cinzel Decorative', serif;
+    font-size: clamp(32px, 6vw, 52px);
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 0.05em;
+    line-height: 1.15;
+    text-shadow: 0 0 40px rgba(201,168,76,0.3), 0 2px 4px rgba(0,0,0,0.8);
+    margin-bottom: 8px;
+  }
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    margin-top: 12px;
+  }
+  .version-badge {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--gold-dim);
+    margin-top: 10px;
+    opacity: 0.7;
+  }
+
+  /* Sections */
+  .section { margin-bottom: 52px; }
+
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  h2::before, h2::after { content: ''; flex: 1; height: 1px; }
+  h2::before { background: linear-gradient(90deg, transparent, var(--gold-dim)); }
+  h2::after  { background: linear-gradient(90deg, var(--gold-dim), transparent); }
+
+  /* Formats */
+  .card-count {
+    background: rgba(201,168,76,0.06);
+    border: 1px solid var(--gold-dim);
+    border-radius: 2px;
+    padding: 20px 24px;
+  }
+  .card-count p { color: var(--parchment-dark); margin-bottom: 10px; font-size: 16px; }
+  .format-list { list-style: none; margin-top: 12px; display: flex; flex-direction: column; gap: 6px; }
+  .format-list li { font-size: 15px; color: var(--parchment-dark); }
+  .format-list li::before {
+    content: '◆';
+    color: var(--gold);
+    font-size: 8px;
+    position: relative;
+    top: -1px;
+    padding-right: 6px;
+  }
+  .format-optional { color: #8a7d62; font-style: italic; }
+
+  /* Preamble */
+  .preamble {
+    font-style: italic;
+    color: #b8a882;
+    font-size: 15.5px;
+    margin-bottom: 28px;
+    padding: 16px 20px;
+    border-left: 2px solid var(--gold-dim);
+    background: rgba(201,168,76,0.04);
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 20px;
+    margin-bottom: 28px;
+    padding: 14px 18px;
+    border: 1px solid rgba(201,168,76,0.1);
+    background: rgba(0,0,0,0.2);
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 13px; color: #8a7d62; font-family: 'Cinzel', serif; letter-spacing: 0.05em; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+
+  /* Arcana grid */
+  .arcana-grid { display: flex; flex-direction: column; gap: 6px; }
+
+  .arcana-card {
+    display: grid;
+    grid-template-columns: 48px 1fr;
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 2px;
+    overflow: hidden;
+    transition: border-color 0.2s, background 0.2s;
+    cursor: default;
+  }
+  .arcana-card:hover { border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.04); }
+
+  .arcana-numeral {
+    background: rgba(201,168,76,0.1);
+    border-right: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    color: var(--gold-dim);
+    letter-spacing: 0.05em;
+    padding: 12px 4px;
+    text-align: center;
+    line-height: 1.3;
+  }
+  .arcana-content { padding: 11px 16px; }
+  .arcana-name { font-family: 'Cinzel', serif; font-size: 13.5px; font-weight: 600; color: var(--gold-light); letter-spacing: 0.05em; margin-bottom: 3px; }
+  .arcana-effect { font-size: 15px; color: var(--parchment-dark); line-height: 1.5; }
+  .arcana-note { font-size: 13px; font-style: italic; color: #8a7d62; margin-top: 4px; line-height: 1.4; }
+  .arcana-faceup { font-size: 12px; color: var(--gold-dim); margin-top: 5px; letter-spacing: 0.05em; font-family: 'Cinzel', serif; }
+
+  /* Category color system */
+  .cat-override .arcana-numeral { background: rgba(139,26,26,0.2); border-color: rgba(139,26,26,0.3); color: #c47070; }
+  .cat-override { border-color: rgba(139,26,26,0.2); }
+  .cat-info .arcana-numeral { background: rgba(50,80,139,0.2); border-color: rgba(50,80,139,0.3); color: #7090c4; }
+  .cat-info { border-color: rgba(50,80,139,0.2); }
+  .cat-scoring .arcana-numeral { background: rgba(40,100,60,0.2); border-color: rgba(40,100,60,0.3); color: #70c490; }
+  .cat-scoring { border-color: rgba(40,100,60,0.2); }
+  .cat-hand .arcana-numeral { background: rgba(100,60,139,0.2); border-color: rgba(100,60,139,0.3); color: #b070c4; }
+  .cat-hand { border-color: rgba(100,60,139,0.2); }
+  .cat-points .arcana-numeral { background: rgba(139,100,26,0.2); border-color: rgba(139,100,26,0.3); color: var(--gold); }
+  .cat-points { border-color: rgba(139,100,26,0.2); }
+
+  /* Rules */
+  .rules-block { display: flex; flex-direction: column; gap: 16px; }
+  .rule-item { padding: 16px 20px; border: 1px solid rgba(201,168,76,0.12); border-radius: 2px; background: rgba(255,255,255,0.02); }
+  .rule-title { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .rule-text { font-size: 15.5px; color: var(--parchment-dark); line-height: 1.6; }
+  .rule-text em { color: var(--gold-light); font-style: normal; font-weight: 500; }
+
+  /* Footer */
+  .footer { text-align: center; margin-top: 64px; padding-top: 32px; position: relative; }
+  .footer::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); }
+  .footer-ornament { font-family: 'Cinzel Decorative', serif; font-size: 11px; color: var(--gold-dim); letter-spacing: 0.3em; text-transform: uppercase; }
+
+  /* Loading */
+  .loading { text-align: center; padding: 80px 0; font-family: 'Cinzel', serif; color: var(--gold-dim); letter-spacing: 0.2em; font-size: 13px; }
+
+  @media (max-width: 600px) {
+    .page { padding: 40px 20px 60px; }
+    h1 { font-size: 28px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="version-bar">
+    <span class="version-label">Versione</span>
+    <select class="version-select" id="versionSelect" onchange="loadVersion(this.value)">
+      <option value="2026_03_28">2026.03.28</option>
+    </select>
+  </div>
+
+  <div id="content"><div class="loading">Caricamento arcani...</div></div>
+</div>
+
+<script>
+  // All known versions — add new ones here as you release them
+  const VERSIONS = [
+    "2026_03_28"
+  ];
+
+  // Populate the select
+  const sel = document.getElementById('versionSelect');
+  sel.innerHTML = VERSIONS.map(v =>
+    `<option value="${v}">${v.replace(/_/g, '.')}</option>`
+  ).join('');
+
+  function categoryClass(cat) {
+    return `cat-${cat}`;
+  }
+
+  function highlightText(text, highlights) {
+    if (!highlights || highlights.length === 0) return text;
+    let result = text;
+    highlights.forEach(h => {
+      result = result.replace(new RegExp(h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
+        `<em>${h}</em>`);
+    });
+    return result;
+  }
+
+  function render(data) {
+    const f = data.formats;
+    const formatsHtml = `
+      <section class="section">
+        <h2>Numero di Carte</h2>
+        <div class="card-count">
+          <p>${f.always_remove}</p>
+          <ul class="format-list">
+            ${f.entries.map(e => `
+              <li>
+                <strong style="color:var(--parchment)">${e.players}</strong>
+                ${e.remove ? `— ${e.remove} →` : '—'}
+                ${e.cards} carte, ${e.turns} turni
+                ${e.optional ? `<span class="format-optional">(opzionale: ${e.optional})</span>` : ''}
+              </li>
+            `).join('')}
+          </ul>
+        </div>
+      </section>`;
+
+    const legendHtml = data.categories.map(c => `
+      <div class="legend-item">
+        <div class="legend-dot" style="background:${c.color}"></div>
+        ${c.label}
+      </div>`).join('');
+
+    const arcanaHtml = data.arcana.map(a => `
+      <div class="arcana-card ${categoryClass(a.category)}">
+        <div class="arcana-numeral">${a.numeral}</div>
+        <div class="arcana-content">
+          <div class="arcana-name">${a.name}</div>
+          <div class="arcana-effect">${a.effect}</div>
+          ${a.note ? `<div class="arcana-note">${a.note}</div>` : ''}
+          ${a.face_up ? `<div class="arcana-faceup">◆ Tieni le carte di questa mano scoperte nella pila, per ricordarti quale mano hai preso con questa carta</div>` : ''}
+        </div>
+      </div>`).join('');
+
+    const rulesHtml = data.rules.map(r => `
+      <div class="rule-item">
+        <div class="rule-title">${r.title}</div>
+        <div class="rule-text">${highlightText(r.text, r.highlights)}</div>
+      </div>`).join('');
+
+    document.getElementById('content').innerHTML = `
+      <header class="header">
+        <span class="star-divider">★ ✦ ★</span>
+        <h1>${data.meta.title}</h1>
+        <p class="subtitle">${data.meta.subtitle}</p>
+        <p class="version-badge">v${data.version}</p>
+      </header>
+
+      ${formatsHtml}
+
+      <section class="section">
+        <h2>Arcani Maggiori</h2>
+        <p class="preamble">${data.arcana_preamble}</p>
+        <div class="legend">${legendHtml}</div>
+        <div class="arcana-grid">${arcanaHtml}</div>
+      </section>
+
+      <section class="section">
+        <h2>Regole Generali</h2>
+        <div class="rules-block">${rulesHtml}</div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer-ornament">★ &nbsp; ${data.meta.footer} &nbsp; ★</p>
+      </footer>`;
+  }
+
+  async function loadVersion(version) {
+    document.getElementById('content').innerHTML = '<div class="loading">Caricamento arcani...</div>';
+    try {
+      const res = await fetch(`${version}.json`);
+      if (!res.ok) throw new Error('Not found');
+      const data = await res.json();
+      render(data);
+    } catch(e) {
+      document.getElementById('content').innerHTML = `<div class="loading">Errore nel caricamento della versione ${version}.</div>`;
+    }
+  }
+
+  // Load latest on startup
+  loadVersion(VERSIONS[0]);
+</script>
+</body>
+</html>

@@ -1,0 +1,293 @@
+{
+  "version": "2026.03.28",
+  "meta": {
+    "title": "Briscola Arcana",
+    "subtitle": "Regolamento Completo — Variante con Arcani Maggiori",
+    "footer": "Che gli arcani vi siano favorevoli"
+  },
+  "arcana_preamble": "Tutti gli arcani maggiori valgono come uno zero di un seme non di briscola. Tutti gli effetti si risolvono alla fine del turno, dopo che tutti i giocatori hanno pescato le nuove carte — ad esempio, per Il Diavolo, prima si pesca e poi si scambiano le mani.",
+  "categories": [
+    { "id": "override", "label": "Esito della mano", "color": "#c47070" },
+    { "id": "info",     "label": "Informazione",     "color": "#7090c4" },
+    { "id": "scoring",  "label": "Conteggio punti",  "color": "#70c490" },
+    { "id": "hand",     "label": "Carte in mano",    "color": "#b070c4" },
+    { "id": "points",   "label": "Punti della mano", "color": "#c9a84c" }
+  ],
+  "formats": {
+    "always_remove": "Togliete sempre le quattro Regine.",
+    "entries": [
+      {
+        "players": "2 Giocatori",
+        "cards": 74,
+        "turns": 37,
+        "remove": null,
+        "optional": "Togliete i 9 e i 10 per una partita più corta → 66 carte, 33 turni"
+      },
+      {
+        "players": "3 Giocatori",
+        "cards": 66,
+        "turns": 22,
+        "remove": "Togliete i 9 e i 10",
+        "optional": null
+      },
+      {
+        "players": "4 Giocatori (2v2)",
+        "cards": 72,
+        "turns": 18,
+        "remove": "Togliete due 2 a caso",
+        "optional": null
+      },
+      {
+        "players": "5 Giocatori",
+        "cards": 70,
+        "turns": 14,
+        "remove": "Togliete i 10",
+        "optional": null
+      },
+      {
+        "players": "6 Giocatori (3v3)",
+        "cards": 66,
+        "turns": 11,
+        "remove": "Togliete i 9 e i 10",
+        "optional": null
+      }
+    ]
+  },
+  "arcana": [
+    {
+      "number": 0,
+      "numeral": "0",
+      "name": "Il Matto",
+      "category": "override",
+      "effect": "Perdi la mano in ogni caso.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 1,
+      "numeral": "I",
+      "name": "Il Mago",
+      "category": "points",
+      "effect": "I punti di questa mano diventano negativi.",
+      "note": null,
+      "face_up": true
+    },
+    {
+      "number": 2,
+      "numeral": "II",
+      "name": "La Papessa",
+      "category": "info",
+      "effect": "Guarda la mano dei tuoi avversari.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 3,
+      "numeral": "III",
+      "name": "L'Imperatrice",
+      "category": "hand",
+      "effect": "Tutti i giocatori rimescolano la propria mano nel mazzo e pescano un nuovo set di carte.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 4,
+      "numeral": "IV",
+      "name": "L'Imperatore",
+      "category": "override",
+      "effect": "Vinci la mano in ogni caso.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 5,
+      "numeral": "V",
+      "name": "Il Papa",
+      "category": "override",
+      "effect": "Sostituisci immediatamente la briscola con una carta dalla tua mano.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 6,
+      "numeral": "VI",
+      "name": "Gli Amanti",
+      "category": "info",
+      "effect": "Due giocatori a tua scelta si guardano la mano a vicenda.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 7,
+      "numeral": "VII",
+      "name": "Il Carro",
+      "category": "hand",
+      "effect": "Ogni giocatore pesca due carte e ne rimette una in cima al mazzo.",
+      "note": "Se non ci sono abbastanza carte nel mazzo, non ha effetto.",
+      "face_up": false
+    },
+    {
+      "number": 8,
+      "numeral": "VIII",
+      "name": "Giustizia",
+      "category": "scoring",
+      "effect": "Durante il conteggio dei punti, se il tuo totale è superiore a quello degli avversari, vale −7 punti.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 9,
+      "numeral": "IX",
+      "name": "L'Eremita",
+      "category": "hand",
+      "effect": "Rimescola la tua mano nel mazzo e pesca 3 nuove carte.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 10,
+      "numeral": "X",
+      "name": "La Ruota della Fortuna",
+      "category": "hand",
+      "effect": "Mescola le carte di tutti i giocatori e distribuiscile di nuovo.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 11,
+      "numeral": "XI",
+      "name": "Forza",
+      "category": "override",
+      "effect": "Le carte più basse battono quelle più alte, e le briscole perdono sempre.",
+      "note": "Come tutti gli arcani, vale come uno zero di un seme non di briscola.",
+      "face_up": false
+    },
+    {
+      "number": 12,
+      "numeral": "XII",
+      "name": "L'Impiccato",
+      "category": "override",
+      "effect": "Si gioca una seconda mano senza pescare. Il vincitore della seconda mano prende entrambe le mani.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 13,
+      "numeral": "XIII",
+      "name": "La Morte",
+      "category": "points",
+      "effect": "Questa mano vale 0 punti.",
+      "note": null,
+      "face_up": true
+    },
+    {
+      "number": 14,
+      "numeral": "XIV",
+      "name": "Temperanza",
+      "category": "scoring",
+      "effect": "Al conteggio dei punti, ogni arcano maggiore catturato vale un punto aggiuntivo (compreso questo).",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 15,
+      "numeral": "XV",
+      "name": "Il Diavolo",
+      "category": "hand",
+      "effect": "Scambia la tua mano con quella di un avversario.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 16,
+      "numeral": "XVI",
+      "name": "La Torre",
+      "category": "hand",
+      "effect": "Un avversario rimescola la sua mano nel mazzo e pesca 3 nuove carte.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 17,
+      "numeral": "XVII",
+      "name": "La Stella",
+      "category": "scoring",
+      "effect": "Durante il conteggio dei punti, se il tuo totale è inferiore a quello degli avversari, vale 11 punti.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 18,
+      "numeral": "XVIII",
+      "name": "La Luna",
+      "category": "info",
+      "effect": "Mostra la tua mano a un avversario.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 19,
+      "numeral": "XIX",
+      "name": "Il Sole",
+      "category": "points",
+      "effect": "Raddoppia i punti vinti in questa mano.",
+      "note": null,
+      "face_up": true
+    },
+    {
+      "number": 20,
+      "numeral": "XX",
+      "name": "Il Giudizio",
+      "category": "override",
+      "effect": "Tratta questa carta come qualsiasi altra carta già giocata durante la partita (tu decidi). Non copia effetti che modificano punti al momento del conteggio.",
+      "note": null,
+      "face_up": false
+    },
+    {
+      "number": 21,
+      "numeral": "XXI",
+      "name": "Il Mondo",
+      "category": "override",
+      "effect": "Tratta questa carta come la briscola in tavola in questo momento, copiandone valore e seme.",
+      "note": null,
+      "face_up": false
+    }
+  ],
+  "rules": [
+    {
+      "title": "Conflitti tra Effetti",
+      "text": "Quando due arcani causano un conflitto, la carta giocata per ultima ha sempre la meglio su quella giocata prima. Ad esempio, in una 2v2, se lo stesso team gioca prima Il Matto e poi L'Imperatore, L'Imperatore vince sul Matto.",
+      "highlights": ["la carta giocata per ultima ha sempre la meglio"]
+    },
+    {
+      "title": "Priorità degli Effetti",
+      "text": "L'Imperatore e Il Matto sono override assoluti e hanno priorità su modificatori di gerarchia come Forza. Se due override si scontrano, vince quello giocato per ultimo.",
+      "highlights": ["L'Imperatore", "Il Matto", "Forza"]
+    },
+    {
+      "title": "\"Avversario\"",
+      "text": "In partite con più di due giocatori, tutte le carte che richiedono di interagire con un avversario richiedono che tu scelga quale avversario coinvolgere, salvo indicazione contraria.",
+      "highlights": ["scelga quale avversario"]
+    },
+    {
+      "title": "La Morte e Temperanza",
+      "text": "Tutti gli arcani maggiori catturati insieme a La Morte valgono sempre 0 punti, anche sotto l'effetto di Temperanza. La morte azzera tutto.",
+      "highlights": ["La Morte", "Temperanza"]
+    },
+    {
+      "title": "Carte Scoperte",
+      "text": "Quando catturi una mano contenente Il Mago, La Morte, o Il Sole, tieni le carte di quella mano scoperte nella tua pila, separate dalle altre. Questo permette di identificarle facilmente al momento del conteggio.",
+      "highlights": ["Il Mago", "La Morte", "Il Sole"]
+    },
+    {
+      "title": "Il Carro nell'ultima mano",
+      "text": "Quando giochi Il Carro nell'ultima mano, il primo giocatore che rimette la carta nel mazzo decide la nuova briscola. Se il giocatore ha solo arcani maggiori in mano, il giocatore che avrà la briscola precedente in mano dovrà rimetterla come briscola.",
+      "highlights": ["Il Carro"]
+    },
+    {
+      "title": "Più arcani che influenzano le mani",
+      "text": "Se nella stessa mano vengono giocati più arcani che influenzano le mani (ad esempio, La Ruota della Fortuna e L'Eremita), gli effetti vanno applicati nell'ordine in cui sono stati giocati.",
+      "highlights": ["La Ruota della Fortuna", "L'Eremita"]
+    }
+  ]
+}
