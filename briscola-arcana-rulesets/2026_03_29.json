@@ -5,7 +5,7 @@
     "subtitle": "Regolamento Completo — Variante con Arcani Maggiori",
     "footer": "Che gli arcani vi siano favorevoli"
   },
-  "arcana_preamble": "Tutti gli arcani maggiori valgono come uno zero di un seme non di briscola. Tutti gli effetti si risolvono alla fine del turno, dopo che tutti i giocatori hanno pescato le nuove carte — ad esempio, per Il Diavolo, prima si pesca e poi si scambiano le mani.",
+  "arcana_preamble": "Tutti gli arcani maggiori valgono come uno zero di un seme non di briscola. Tutti gli effetti si risolvono alla fine del turno, dopo che tutti i giocatori hanno pescato le nuove carte — ad esempio, per Il Diavolo, prima si pesca e poi si scambiano le mani. Un arcano maggiore non può in nessun caso essere la briscola in tavola.",
   "categories": [
     { "id": "override", "label": "Esito della mano", "color": "#c47070" },
     { "id": "info",     "label": "Informazione",     "color": "#7090c4" },
@@ -60,7 +60,7 @@
       "name": "Il Matto",
       "category": "scoring",
       "effect": "Al conteggio dei punti, vale 1 punto ogni 2 scartini catturati.",
-      "note": "Gli scartini sono le carte senza valore di punti che non sono arcani maggiori (2, 3, 4, 5, 6, 7, e 8 se presenti nel mazzo).",
+      "note": "Gli scartini sono le carte senza valore di punti che non sono arcani maggiori (2, 4, 5, 6, 7, 8, 9 e 10).",
       "face_up": false
     },
     {
@@ -77,7 +77,7 @@
       "numeral": "II",
       "name": "La Papessa",
       "category": "info",
-      "effect": "Guarda la mano dei tuoi avversari.",
+      "effect": "Il giocatore di questa carta guarda la mano dei suoi avversari.",
       "note": null,
       "face_up": false
     },
@@ -86,7 +86,7 @@
       "numeral": "III",
       "name": "L'Imperatrice",
       "category": "hand",
-      "effect": "Tutti i giocatori rimescolano la propria mano nel mazzo e pescano un nuovo set di carte.",
+      "effect": "Tutti i giocatori mostrano la loro mano a tutti i loro avversari, la collocano nella loro pila di punti, e pescano una nuova mano. Ogni mano di un giocatore conta come un turno a se stante.",
       "note": null,
       "face_up": false
     },
@@ -105,7 +105,7 @@
       "name": "Il Papa",
       "category": "override",
       "effect": "Sostituisci immediatamente la briscola con una carta dalla tua mano.",
-      "note": null,
+      "note": "La nuova briscola non può essere un arcano maggiore",
       "face_up": false
     },
     {
@@ -113,7 +113,7 @@
       "numeral": "VI",
       "name": "Gli Amanti",
       "category": "info",
-      "effect": "Due giocatori a tua scelta si guardano la mano a vicenda.",
+      "effect": "Due giocatori a scelta del giocatore di questa carta si guardano la mano a vicenda.",
       "note": null,
       "face_up": false
     },
@@ -122,7 +122,7 @@
       "numeral": "VII",
       "name": "Il Carro",
       "category": "hand",
-      "effect": "Ogni giocatore pesca due carte e ne rimette una in cima al mazzo.",
+      "effect": "Si fanno due giri di pesca anziché uno. Poi, in ordine di turno, ogni giocatore rimette una carta in cima al mazzo tra quelle che ha in mano.",
       "note": "Se non ci sono abbastanza carte nel mazzo, non ha effetto.",
       "face_up": false
     },
@@ -131,7 +131,7 @@
       "numeral": "VIII",
       "name": "Giustizia",
       "category": "scoring",
-      "effect": "Durante il conteggio dei punti, se il tuo totale è superiore a quello degli avversari, vale −7 punti.",
+      "effect": "Durante il conteggio dei punti, se il totale del giocatore che ha catturato questa carta non è il più basso tra tutti i giocatori, vale −7 punti.",
       "note": null,
       "face_up": false
     },
@@ -140,7 +140,7 @@
       "numeral": "IX",
       "name": "L'Eremita",
       "category": "hand",
-      "effect": "Rimescola la tua mano nel mazzo e pesca 3 nuove carte.",
+      "effect": "Il giocatore di questa carta rimescola la sua mano nel mazzo e pesca 3 nuove carte.",
       "note": null,
       "face_up": false
     },
@@ -194,7 +194,7 @@
       "numeral": "XV",
       "name": "Il Diavolo",
       "category": "hand",
-      "effect": "Scambia la tua mano con quella di un avversario.",
+      "effect": "Il giocatore di questa carta scambia la propria mano con quella di un avversario.",
       "note": null,
       "face_up": false
     },
@@ -203,7 +203,7 @@
       "numeral": "XVI",
       "name": "La Torre",
       "category": "hand",
-      "effect": "Un avversario rimescola la sua mano nel mazzo e pesca 3 nuove carte.",
+      "effect": "Il giocatore di questa carta sceglie un avversario. L'avversario rimescola la sua mano nel mazzo e pesca 3 nuove carte.",
       "note": null,
       "face_up": false
     },
@@ -221,7 +221,7 @@
       "numeral": "XVIII",
       "name": "La Luna",
       "category": "info",
-      "effect": "Mostra la tua mano a un avversario.",
+      "effect": "Il giocatore di questa carta mostra la tua mano a un avversario.",
       "note": null,
       "face_up": false
     },
@@ -239,8 +239,8 @@
       "numeral": "XX",
       "name": "Il Giudizio",
       "category": "override",
-      "effect": "Tratta questa carta come qualsiasi altra carta già giocata durante la partita (tu decidi). Non copia effetti che modificano punti al momento del conteggio.",
-      "note": null,
+      "effect": "Il giocatore di questa carta chiama una carta già catturata durante la partita. Tratta questa carta come la carta chiamata. Non copia effetti che modificano punti al momento del conteggio, e non copia i punti che dà la carta.",
+      "note": "Esempi di \"effetti che modificano punti al momento del conteggio\" sono Temperanza, La Stella, ...",
       "face_up": false
     },
     {
@@ -248,7 +248,7 @@
       "numeral": "XXI",
       "name": "Il Mondo",
       "category": "override",
-      "effect": "Tratta questa carta come la briscola in tavola in questo momento, copiandone valore e seme.",
+      "effect": "Tratta questa carta come la briscola in tavola in questo momento, copiandone valore e seme (ma non punti).",
       "note": null,
       "face_up": false
     }

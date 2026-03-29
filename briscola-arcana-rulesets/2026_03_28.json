@@ -85,10 +85,10 @@
       "number": 3,
       "numeral": "III",
       "name": "L'Imperatrice",
-      "category": "hand",
-      "effect": "Tutti i giocatori rimescolano la propria mano nel mazzo e pescano un nuovo set di carte.",
+      "category": "points",
+      "effect": "Tutti i giocatori guadagnano i punti della mano attuale.",
       "note": null,
-      "face_up": false
+      "face_up": true
     },
     {
       "number": 4,
@@ -239,7 +239,7 @@
       "numeral": "XX",
       "name": "Il Giudizio",
       "category": "override",
-      "effect": "Tratta questa carta come qualsiasi altra carta già giocata durante la partita (tu decidi). Non copia effetti che modificano punti al momento del conteggio.",
+      "effect": "Tratta questa carta come qualsiasi altra carta già giocata durante la partita (tu decidi). Non copia effetti che modificano punti al momento del conteggio (come Temperanza o La Stella).",
       "note": null,
       "face_up": false
     },
@@ -276,16 +276,16 @@
     },
     {
       "title": "Carte Scoperte",
-      "text": "Quando catturi una mano contenente Il Mago, La Morte, o Il Sole, tieni le carte di quella mano scoperte nella tua pila, separate dalle altre. Questo permette di identificarle facilmente al momento del conteggio.",
+      "text": "Quando catturi una mano contenente Il Mago, La Morte, o Il Sole, tieni le carte di quella mano scoperte nella tua pila. Questo permette di identificarle facilmente al momento del conteggio.",
       "highlights": ["Il Mago", "La Morte", "Il Sole"]
     },
     {
-      "title": "Il Carro nell'ultima mano",
-      "text": "Quando giochi Il Carro nell'ultima mano, il primo giocatore che rimette la carta nel mazzo decide la nuova briscola. Se il giocatore ha solo arcani maggiori in mano, il giocatore che avrà la briscola precedente in mano dovrà rimetterla come briscola.",
+      "title": "Il Carro nell'Ultima Mano",
+      "text": "Quando viene giocato Il Carro nell'ultima mano, il primo giocatore che rimette una carta nel mazzo decide la nuova briscola. Se un giocatore ha solo arcani maggiori in mano, il giocatore che ha la briscola precedente in mano dovrà rimetterla come nuova briscola.",
       "highlights": ["Il Carro"]
     },
     {
-      "title": "Più arcani che influenzano le mani",
+      "title": "Più Arcani che Influenzano le Mani",
       "text": "Se nella stessa mano vengono giocati più arcani che influenzano le mani (ad esempio, La Ruota della Fortuna e L'Eremita), gli effetti vanno applicati nell'ordine in cui sono stati giocati.",
       "highlights": ["La Ruota della Fortuna", "L'Eremita"]
     }
