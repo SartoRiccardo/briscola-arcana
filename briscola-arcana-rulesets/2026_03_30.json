@@ -1,11 +1,42 @@
 {
-  "version": "2026.03.29",
+  "version": "2026.03.30",
   "meta": {
     "title": "Briscola Arcana",
     "subtitle": "Regolamento Completo — Variante con Arcani Maggiori",
     "footer": "Che gli arcani vi siano favorevoli"
   },
-  "arcana_preamble": "Tutti gli arcani maggiori valgono come uno zero di un seme non di briscola. Tutti gli effetti si risolvono alla fine del turno, dopo che tutti i giocatori hanno pescato le nuove carte — ad esempio, per Il Diavolo, prima si pesca e poi si scambiano le mani. Un arcano maggiore non può in nessun caso essere la briscola in tavola.",
+  "patch_notes": [
+    {
+      "version": "2026.03.30",
+      "changes": [
+        "XI - Forza: reworked. La briscola perde la priorità e viene trattata come qualsiasi altro seme, e gli arcani maggiori diventano la nuova briscola.",
+        "Regola generale: gli arcani maggiori non hanno seme e non determinano mai il seme di apertura di una mano."
+      ]
+    },
+    {
+      "version": "2026.03.29",
+      "changes": [
+        "0 - Il Matto: reworked. Al conteggio dei punti, vale 1 punto ogni 2 scartini catturati.",
+        "III - L'Imperatrice: reworked. Tutti i giocatori mostrano la loro mano, la collocano nella pila punti, e pescano una nuova mano.",
+        "XIV - Temperanza: nerfed. Vale 1 punto ogni 2 arcani maggiori catturati (era 1 per arcano).",
+        "XX - Giudizio: non copia effetti che modificano punti al momento del conteggio.",
+        "Nuova regola: Il Carro nell'ultima mano.",
+        "Nuova regola: più arcani che influenzano le mani si risolvono in ordine di gioco."
+      ]
+    },
+    {
+      "version": "2026.03.28",
+      "changes": [
+        "Prima versione."
+      ]
+    }
+  ],
+  "arcana_preamble": "Tutti gli arcani maggiori valgono come uno zero di un seme non di briscola.",
+  "arcana_rules": [
+    "Gli arcani maggiori non hanno seme e non determinano il seme di apertura di una mano. Il seme di apertura è determinato dalla prima carta non-arcano maggiore giocata. Se tutti i giocatori giocano un arcano maggiore, vince chi ha giocato per primo.",
+    "Un arcano maggiore non può in nessun caso essere la briscola in tavola.",
+    "Tutti gli effetti si risolvono alla fine del turno, dopo che tutti i giocatori hanno pescato le nuove carte — ad esempio, per Il Diavolo, prima si pesca e poi si scambiano le mani."
+  ],
   "categories": [
     { "id": "override", "label": "Esito della mano", "color": "#c47070" },
     { "id": "info",     "label": "Informazione",     "color": "#7090c4" },
@@ -59,8 +90,8 @@
       "numeral": "0",
       "name": "Il Matto",
       "category": "scoring",
-      "effect": "Al conteggio dei punti, ogni scartino catturato dal giocatore che ha catturato questa carta vale mezzo punto.",
-      "note": "Gli scartini sono le carte senza valore di punti che non sono arcani maggiori (2, 4, 5, 6, 7, 8, 9 e 10).",
+      "effect": "Al conteggio dei punti, vale 1 punto ogni 2 scartini catturati.",
+      "note": "Gli scartini sono le carte senza valore di punti che non sono arcani maggiori (2, 3, 4, 5, 6, 7, e 8 se presenti nel mazzo).",
       "face_up": false
     },
     {
@@ -77,7 +108,7 @@
       "numeral": "II",
       "name": "La Papessa",
       "category": "info",
-      "effect": "Il giocatore di questa carta guarda la mano dei suoi avversari.",
+      "effect": "Guarda la mano dei tuoi avversari.",
       "note": null,
       "face_up": false
     },
@@ -105,7 +136,7 @@
       "name": "Il Papa",
       "category": "override",
       "effect": "Sostituisci immediatamente la briscola con una carta dalla tua mano.",
-      "note": "La nuova briscola non può essere un arcano maggiore",
+      "note": null,
       "face_up": false
     },
     {
@@ -113,7 +144,7 @@
       "numeral": "VI",
       "name": "Gli Amanti",
       "category": "info",
-      "effect": "Due giocatori a scelta del giocatore di questa carta si guardano la mano a vicenda.",
+      "effect": "Due giocatori a tua scelta si guardano la mano a vicenda.",
       "note": null,
       "face_up": false
     },
@@ -122,7 +153,7 @@
       "numeral": "VII",
       "name": "Il Carro",
       "category": "hand",
-      "effect": "Si fanno due giri di pesca anziché uno. Poi, in ordine di turno, ogni giocatore rimette una carta in cima al mazzo tra quelle che ha in mano.",
+      "effect": "Ogni giocatore pesca due carte e ne rimette una in cima al mazzo.",
       "note": "Se non ci sono abbastanza carte nel mazzo, non ha effetto.",
       "face_up": false
     },
@@ -131,7 +162,7 @@
       "numeral": "VIII",
       "name": "Giustizia",
       "category": "scoring",
-      "effect": "Durante il conteggio dei punti, se il totale del giocatore che ha catturato questa carta non è il più basso tra tutti i giocatori, vale −7 punti.",
+      "effect": "Durante il conteggio dei punti, se il tuo totale è superiore a quello degli avversari, vale −7 punti.",
       "note": null,
       "face_up": false
     },
@@ -140,7 +171,7 @@
       "numeral": "IX",
       "name": "L'Eremita",
       "category": "hand",
-      "effect": "Il giocatore di questa carta rimescola la sua mano nel mazzo e pesca 3 nuove carte.",
+      "effect": "Rimescola la tua mano nel mazzo e pesca 3 nuove carte.",
       "note": null,
       "face_up": false
     },
@@ -158,8 +189,8 @@
       "numeral": "XI",
       "name": "Forza",
       "category": "override",
-      "effect": "Le carte più basse battono quelle più alte, e le briscole perdono sempre.",
-      "note": "Come tutti gli arcani, vale come uno zero di un seme non di briscola.",
+      "effect": "La briscola perde la priorità e viene trattata come qualsiasi altro seme. Gli arcani maggiori acquisiscono il seme di briscola e un valore pari al loro numero romano.",
+      "note": "Gli arcani maggiori non perdono la priorità di briscola appena acquisita.",
       "face_up": false
     },
     {
@@ -174,7 +205,7 @@
     {
       "number": 13,
       "numeral": "XIII",
-      "name": "La Morte",
+      "name": "Morte",
       "category": "points",
       "effect": "Questa mano vale 0 punti.",
       "note": null,
@@ -185,7 +216,7 @@
       "numeral": "XIV",
       "name": "Temperanza",
       "category": "scoring",
-      "effect": "Al conteggio dei punti, ogni arcano maggiore vale mezzo punto (compreso questo).",
+      "effect": "Al conteggio dei punti, vale 1 punto ogni 2 arcani maggiori catturati (compreso questo).",
       "note": null,
       "face_up": false
     },
@@ -194,7 +225,7 @@
       "numeral": "XV",
       "name": "Il Diavolo",
       "category": "hand",
-      "effect": "Il giocatore di questa carta scambia la propria mano con quella di un avversario.",
+      "effect": "Scambia la tua mano con quella di un avversario.",
       "note": null,
       "face_up": false
     },
@@ -203,7 +234,7 @@
       "numeral": "XVI",
       "name": "La Torre",
       "category": "hand",
-      "effect": "Il giocatore di questa carta sceglie un avversario. L'avversario rimescola la sua mano nel mazzo e pesca 3 nuove carte.",
+      "effect": "Un avversario rimescola la sua mano nel mazzo e pesca 3 nuove carte.",
       "note": null,
       "face_up": false
     },
@@ -221,7 +252,7 @@
       "numeral": "XVIII",
       "name": "La Luna",
       "category": "info",
-      "effect": "Il giocatore di questa carta mostra la tua mano a un avversario.",
+      "effect": "Mostra la tua mano a un avversario.",
       "note": null,
       "face_up": false
     },
@@ -237,10 +268,10 @@
     {
       "number": 20,
       "numeral": "XX",
-      "name": "Il Giudizio",
+      "name": "Giudizio",
       "category": "override",
-      "effect": "Il giocatore di questa carta chiama una carta già catturata durante la partita. Tratta questa carta come la carta chiamata. Non copia effetti che modificano punti al momento del conteggio, e non copia i punti che dà la carta.",
-      "note": "Esempi di \"effetti che modificano punti al momento del conteggio\" sono Temperanza, La Stella, ...",
+      "effect": "Tratta questa carta come qualsiasi altra carta già giocata durante la partita (tu decidi). Non copia effetti che modificano punti al momento del conteggio.",
+      "note": null,
       "face_up": false
     },
     {
@@ -248,7 +279,7 @@
       "numeral": "XXI",
       "name": "Il Mondo",
       "category": "override",
-      "effect": "Tratta questa carta come la briscola in tavola in questo momento, copiandone valore e seme (ma non punti).",
+      "effect": "Tratta questa carta come la briscola in tavola in questo momento, copiandone valore e seme.",
       "note": null,
       "face_up": false
     }
@@ -273,11 +304,6 @@
       "title": "La Morte e Temperanza",
       "text": "Tutti gli arcani maggiori catturati insieme a La Morte valgono sempre 0 punti, anche sotto l'effetto di Temperanza. La morte azzera tutto.",
       "highlights": ["La Morte", "Temperanza"]
-    },
-    {
-      "title": "Carte Scoperte",
-      "text": "Quando catturi una mano contenente Il Mago, La Morte, o Il Sole, tieni le carte di quella mano scoperte nella tua pila. Questo permette di identificarle facilmente al momento del conteggio.",
-      "highlights": ["Il Mago", "La Morte", "Il Sole"]
     },
     {
       "title": "Il Carro nell'Ultima Mano",
