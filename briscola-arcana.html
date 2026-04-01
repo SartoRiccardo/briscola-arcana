@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Briscola Arcana</title>
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=EB+Garamond:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 <style>
   :root {
     --gold: #c9a84c;
@@ -249,6 +250,139 @@
   .rule-text { font-size: 15.5px; color: var(--parchment-dark); line-height: 1.6; }
   .rule-text em { color: var(--gold-light); font-style: normal; font-weight: 500; }
 
+  /* ── Patch Notes ── */
+  .patch-notes-section {
+    margin-bottom: 52px;
+  }
+
+  .patch-entry {
+    border: 1px solid rgba(201,168,76,0.12);
+    border-radius: 2px;
+    overflow: hidden;
+    margin-bottom: 6px;
+    transition: border-color 0.2s;
+  }
+  .patch-entry:hover {
+    border-color: rgba(201,168,76,0.28);
+  }
+  .patch-entry:first-child {
+    border-color: rgba(201,168,76,0.22);
+  }
+
+  .patch-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    color: var(--gold-dim);
+    text-transform: uppercase;
+    text-align: left;
+    transition: color 0.2s, background 0.2s;
+  }
+  .patch-toggle:hover {
+    color: var(--gold);
+    background: rgba(201,168,76,0.04);
+  }
+  .patch-entry:first-child .patch-toggle {
+    color: var(--gold);
+  }
+
+  .patch-toggle-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .patch-label-latest {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--gold-dim);
+    border: 1px solid var(--gold-dim);
+    padding: 2px 7px;
+    border-radius: 1px;
+    text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    opacity: 0.7;
+  }
+  .patch-entry:first-child .patch-label-latest {
+    color: var(--gold);
+    border-color: var(--gold);
+    opacity: 1;
+  }
+
+  .patch-chevron {
+    width: 10px;
+    height: 6px;
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+    opacity: 0.5;
+  }
+  .patch-toggle:hover .patch-chevron { opacity: 1; }
+  .patch-entry.open .patch-chevron { transform: rotate(180deg); }
+
+  .patch-body {
+    display: none;
+    padding: 0 18px 16px;
+    border-top: 1px solid rgba(201,168,76,0.08);
+  }
+  .patch-entry.open .patch-body { display: block; }
+
+  .patch-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    padding-top: 14px;
+  }
+  .patch-list li {
+    font-size: 15px;
+    color: var(--parchment-dark);
+    line-height: 1.5;
+    padding-left: 18px;
+    position: relative;
+  }
+  .patch-list li::before {
+    content: '◆';
+    color: var(--gold-dim);
+    font-size: 7px;
+    position: absolute;
+    left: 0;
+    top: 6px;
+  }
+
+  /* Markup tags */
+  .tag-icon {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 2px 7px 2px 5px;
+    border-radius: 2px;
+    vertical-align: middle;
+    position: relative;
+    top: -1px;
+    margin-right: 8px;
+    white-space: nowrap;
+  }
+  .tag-icon i { font-size: 13px; line-height: 1; }
+  .tag-nerf   { background: rgba(192,57,43,0.12);  border: 1px solid rgba(192,57,43,0.35);  color: #e07060; }
+  .tag-buff   { background: rgba(39,174,96,0.10);  border: 1px solid rgba(39,174,96,0.35);  color: #60c080; }
+  .tag-rework { background: rgba(41,128,185,0.12); border: 1px solid rgba(41,128,185,0.35); color: #6090d0; }
+  .tag-patch  { background: rgba(212,136,10,0.12); border: 1px solid rgba(212,136,10,0.35); color: #c9903a; }
+
+  .note-subject { font-style: normal; color: var(--parchment); font-weight: 500; }
+
   /* Footer */
   .footer { text-align: center; margin-top: 64px; padding-top: 32px; position: relative; }
   .footer::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 200px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim), transparent); }
@@ -275,17 +409,8 @@
 </div>
 
 <script>
-  // All known versions — add new ones here as you release them
-  const VERSIONS = [
-    "2026_03_29",
-    "2026_03_28",
-  ];
-
-  // Populate the select
-  const sel = document.getElementById('versionSelect');
-  sel.innerHTML = VERSIONS.map(v =>
-    `<option value="${v}">${v.replace(/_/g, '.')}</option>`
-  ).join('');
+  // All versions are loaded from versions.json — patch notes live there too
+  let versionsManifest = [];
 
   function categoryClass(cat) {
     return `cat-${cat}`;
@@ -295,10 +420,72 @@
     if (!highlights || highlights.length === 0) return text;
     let result = text;
     highlights.forEach(h => {
-      result = result.replace(new RegExp(h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
-        `<em>${h}</em>`);
+      result = result.replace(
+        new RegExp(h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g'),
+        `<em>${h}</em>`
+      );
     });
     return result;
+  }
+
+  const TAG_CONFIG = {
+    nerf:   { icon: 'bi-arrow-down-circle-fill', label: 'nerf',   cls: 'tag-nerf'   },
+    buff:   { icon: 'bi-arrow-up-circle-fill',   label: 'buff',   cls: 'tag-buff'   },
+    rework: { icon: 'bi-arrow-repeat',           label: 'rework', cls: 'tag-rework' },
+    patch:  { icon: 'bi-bug-fill',               label: 'fix',    cls: 'tag-patch'  },
+  };
+
+  function renderNote(note) {
+    const tag = note.type && TAG_CONFIG[note.type];
+    const badge = tag
+      ? `<span class="tag-icon ${tag.cls}"><i class="bi ${tag.icon}"></i>${tag.label}</span>`
+      : '';
+    const colon = note.content.indexOf(':');
+    const content = colon !== -1
+      ? `<em class="note-subject">${note.content.slice(0, colon + 1)}</em>${note.content.slice(colon + 1)}`
+      : note.content;
+    return `<li>${badge}${content}</li>`;
+  }
+
+  function renderPatchNotes(currentVersionId) {
+    if (!versionsManifest.length) return '';
+
+    const entriesHtml = versionsManifest.map((v, i) => {
+      const isLatest = i === 0;
+      const isCurrentVersion = v.id === currentVersionId;
+      const openByDefault = isLatest || isCurrentVersion;
+
+      const changesHtml = v.patch_notes.map(renderNote).join('');
+
+      return `
+        <div class="patch-entry${openByDefault ? ' open' : ''}">
+          <button class="patch-toggle" onclick="togglePatch(this)" aria-expanded="${openByDefault}">
+            <span class="patch-toggle-left">
+              <span>${v.label}</span>
+              ${isLatest ? '<span class="patch-label-latest">Ultima</span>' : ''}
+            </span>
+            <svg class="patch-chevron" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="patch-body">
+            <ul class="patch-list">${changesHtml}</ul>
+          </div>
+        </div>`;
+    }).join('');
+
+    return `
+      <section class="section patch-notes-section">
+        <h2>Note di Versione</h2>
+        ${entriesHtml}
+      </section>`;
+  }
+
+  function togglePatch(btn) {
+    const entry = btn.closest('.patch-entry');
+    const isOpen = entry.classList.contains('open');
+    entry.classList.toggle('open', !isOpen);
+    btn.setAttribute('aria-expanded', String(!isOpen));
   }
 
   function render(data) {
@@ -338,11 +525,20 @@
         </div>
       </div>`).join('');
 
+    const arcanaRulesHtml = (data.arcana_rules || []).map(r => `
+      <div class="rule-item">
+        <div class="rule-text">${r}</div>
+      </div>`).join('');
+
     const rulesHtml = data.rules.map(r => `
       <div class="rule-item">
         <div class="rule-title">${r.title}</div>
         <div class="rule-text">${highlightText(r.text, r.highlights)}</div>
       </div>`).join('');
+
+    // Find the version id that was selected
+    const sel = document.getElementById('versionSelect');
+    const currentVersionId = sel.value;
 
     document.getElementById('content').innerHTML = `
       <header class="header">
@@ -356,7 +552,8 @@
 
       <section class="section">
         <h2>Arcani Maggiori</h2>
-        <p class="preamble">${data.arcana_preamble}</p>
+        ${data.arcana_preamble ? `<p class="preamble">${data.arcana_preamble}</p>` : ''}
+        ${arcanaRulesHtml ? `<div class="rules-block" style="margin-bottom:24px">${arcanaRulesHtml}</div>` : ''}
         <div class="legend">${legendHtml}</div>
         <div class="arcana-grid">${arcanaHtml}</div>
       </section>
@@ -365,6 +562,8 @@
         <h2>Regole Generali</h2>
         <div class="rules-block">${rulesHtml}</div>
       </section>
+
+      ${renderPatchNotes(currentVersionId)}
 
       <footer class="footer">
         <p class="footer-ornament">★ &nbsp; ${data.meta.footer} &nbsp; ★</p>
@@ -383,8 +582,28 @@
     }
   }
 
-  // Load latest on startup
-  loadVersion(VERSIONS[0]);
+  async function init() {
+    try {
+      const res = await fetch('briscola-arcana-rulesets/versions.json');
+      if (!res.ok) throw new Error('versions.json not found');
+      const manifest = await res.json();
+      versionsManifest = manifest.versions;
+
+      const sel = document.getElementById('versionSelect');
+      sel.innerHTML = versionsManifest.map(v =>
+        `<option value="${v.id}">${v.label}</option>`
+      ).join('');
+
+      if (versionsManifest.length > 0) {
+        loadVersion(versionsManifest[0].id);
+      }
+    } catch(e) {
+      document.getElementById('content').innerHTML =
+        `<div class="loading">Errore nel caricamento di versions.json.</div>`;
+    }
+  }
+
+  init();
 </script>
 </body>
 </html>

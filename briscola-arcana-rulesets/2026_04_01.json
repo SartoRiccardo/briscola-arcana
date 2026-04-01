@@ -1,37 +1,11 @@
 {
-  "version": "2026.03.30",
+  "version": "2026.04.01",
   "meta": {
     "title": "Briscola Arcana",
     "subtitle": "Regolamento Completo — Variante con Arcani Maggiori",
     "footer": "Che gli arcani vi siano favorevoli"
   },
-  "patch_notes": [
-    {
-      "version": "2026.03.30",
-      "changes": [
-        "XI - Forza: reworked. La briscola perde la priorità e viene trattata come qualsiasi altro seme, e gli arcani maggiori diventano la nuova briscola.",
-        "Regola generale: gli arcani maggiori non hanno seme e non determinano mai il seme di apertura di una mano."
-      ]
-    },
-    {
-      "version": "2026.03.29",
-      "changes": [
-        "0 - Il Matto: reworked. Al conteggio dei punti, vale 1 punto ogni 2 scartini catturati.",
-        "III - L'Imperatrice: reworked. Tutti i giocatori mostrano la loro mano, la collocano nella pila punti, e pescano una nuova mano.",
-        "XIV - Temperanza: nerfed. Vale 1 punto ogni 2 arcani maggiori catturati (era 1 per arcano).",
-        "XX - Giudizio: non copia effetti che modificano punti al momento del conteggio.",
-        "Nuova regola: Il Carro nell'ultima mano.",
-        "Nuova regola: più arcani che influenzano le mani si risolvono in ordine di gioco."
-      ]
-    },
-    {
-      "version": "2026.03.28",
-      "changes": [
-        "Prima versione."
-      ]
-    }
-  ],
-  "arcana_preamble": "Tutti gli arcani maggiori valgono come uno zero di un seme non di briscola.",
+  "arcana_preamble": null,
   "arcana_rules": [
     "Gli arcani maggiori non hanno seme e non determinano il seme di apertura di una mano. Il seme di apertura è determinato dalla prima carta non-arcano maggiore giocata. Se tutti i giocatori giocano un arcano maggiore, vince chi ha giocato per primo.",
     "Un arcano maggiore non può in nessun caso essere la briscola in tavola.",
@@ -90,7 +64,7 @@
       "numeral": "0",
       "name": "Il Matto",
       "category": "scoring",
-      "effect": "Al conteggio dei punti, vale 1 punto ogni 2 scartini catturati.",
+      "effect": "Al conteggio dei punti, vale 1 punto ogni 3 scartini catturati",
       "note": "Gli scartini sono le carte senza valore di punti che non sono arcani maggiori (2, 3, 4, 5, 6, 7, e 8 se presenti nel mazzo).",
       "face_up": false
     },
@@ -163,7 +137,7 @@
       "name": "Giustizia",
       "category": "scoring",
       "effect": "Durante il conteggio dei punti, se il tuo totale è superiore a quello degli avversari, vale −7 punti.",
-      "note": null,
+      "note": "Vale solo per il giocatore che ha catturato questa carta",
       "face_up": false
     },
     {
@@ -190,7 +164,7 @@
       "name": "Forza",
       "category": "override",
       "effect": "La briscola perde la priorità e viene trattata come qualsiasi altro seme. Gli arcani maggiori acquisiscono il seme di briscola e un valore pari al loro numero romano.",
-      "note": "Gli arcani maggiori non perdono la priorità di briscola appena acquisita.",
+      "note": "Gli arcani maggiori non perdono la priorità di briscola appena acquisita. In alcuni mazzi, La Forza e La Giustizia potrebbero essere scambiate di numero. Spetta a voi se trattare La Forza come XI o VIII.",
       "face_up": false
     },
     {
@@ -216,8 +190,8 @@
       "numeral": "XIV",
       "name": "Temperanza",
       "category": "scoring",
-      "effect": "Al conteggio dei punti, vale 1 punto ogni 2 arcani maggiori catturati (compreso questo).",
-      "note": null,
+      "effect": "Al conteggio dei punti, vale 1 punto ogni 2 arcani maggiori catturati",
+      "note": "Vale solo per il giocatore che ha catturato questa carta",
       "face_up": false
     },
     {
@@ -244,7 +218,7 @@
       "name": "La Stella",
       "category": "scoring",
       "effect": "Durante il conteggio dei punti, se il tuo totale è inferiore a quello degli avversari, vale 11 punti.",
-      "note": null,
+      "note": "Vale solo per il giocatore che ha catturato questa carta",
       "face_up": false
     },
     {
@@ -292,8 +266,8 @@
     },
     {
       "title": "Priorità degli Effetti",
-      "text": "L'Imperatore e Il Matto sono override assoluti e hanno priorità su modificatori di gerarchia come Forza. Se due override si scontrano, vince quello giocato per ultimo.",
-      "highlights": ["L'Imperatore", "Il Matto", "Forza"]
+      "text": "L'Imperatore è un sono override assoluto e ha priorità su modificatori di gerarchia come Forza. Se due override si scontrano, vince quello giocato per ultimo.",
+      "highlights": ["L'Imperatore", "Forza"]
     },
     {
       "title": "\"Avversario\"",
@@ -301,9 +275,9 @@
       "highlights": ["scelga quale avversario"]
     },
     {
-      "title": "La Morte e Temperanza",
-      "text": "Tutti gli arcani maggiori catturati insieme a La Morte valgono sempre 0 punti, anche sotto l'effetto di Temperanza. La morte azzera tutto.",
-      "highlights": ["La Morte", "Temperanza"]
+      "title": "Arcani di tipo \"Conteggio punti\"",
+      "text": "Gli arcani di tipo \"Conteggio punti\" sono soggetti ad altri arcani come Il Sole o La Morte.",
+      "highlights": ["La Morte", "Il Sole"]
     },
     {
       "title": "Il Carro nell'Ultima Mano",

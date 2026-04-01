@@ -1,0 +1,33 @@
+{
+  "versions": [
+    {
+      "id": "2026_04_01",
+      "label": "2026.04.01",
+      "patch_notes": [
+        { "type": "rework",  "content": "XI - Forza: la briscola perde la priorità e viene trattata come qualsiasi altro seme. Gli arcani maggiori acquisiscono il seme di briscola e un valore pari al loro numero romano." },
+        { "type": "buff",   "content": "XIX - Il Sole: Raddoppia anche i punti di altri arcani maggiori come La Stella o Temperanza" },
+        { "type": "buff",   "content": "XIII - Morte: Azzera anche i punti di altri arcani maggiori come La Stella o Temperanza" },
+        { "type": "nerf",   "content": "Regola generale: gli arcani maggiori non hanno seme e non determinano mai il seme di apertura di una mano." }
+      ]
+    },
+    {
+      "id": "2026_03_29",
+      "label": "2026.03.29",
+      "patch_notes": [
+        { "type": "rework",  "content": "0 - Il Matto: al conteggio dei punti, vale 1 punto ogni 2 scartini catturati." },
+        { "type": "rework",  "content": "III - L'Imperatrice: tutti i giocatori mostrano la loro mano, la collocano nella pila punti, e pescano una nuova mano." },
+        { "type": "nerf",    "content": "XIV - Temperanza: vale 1 punto ogni 2 arcani maggiori catturati (era 1 per arcano)." },
+        { "type": "patch",   "content": "XX - Giudizio: non copia effetti che modificano punti al momento del conteggio." },
+        { "type": null,    "content": "Nuova regola: Il Carro nell'ultima mano." },
+        { "type": null,    "content": "Nuova regola: più arcani che influenzano le mani si risolvono in ordine di gioco." }
+      ]
+    },
+    {
+      "id": "2026_03_28",
+      "label": "2026.03.28",
+      "patch_notes": [
+        { "type": null, "content": "Prima versione." }
+      ]
+    }
+  ]
+}
